@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button"
 import { TopicHeroLogo } from "@/components/topic-hero-logo"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
-export function HeroSection() {
+export const  HeroSection = ()=> {
   const { ref, isVisible } = useScrollAnimation(0.1)
 
   return (
