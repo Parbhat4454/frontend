@@ -2,28 +2,35 @@
 
 import { Button } from "@/components/ui/button"
 import { TopicHeroLogo } from "@/components/topic-hero-logo"
-import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { motion } from "framer-motion" // Import motion
 
-export const  HeroSection = ()=> {
-  const { ref, isVisible } = useScrollAnimation(0.1)
-
+export const HeroSection = () => {
   return (
-    <section
-      ref={ref}
-      className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 overflow-hidden bg-black"
-    >
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-4 py-20 overflow-hidden bg-black">
+      {/* Background shapes using motion */}
       <div className="absolute inset-0 overflow-hidden">
-        <div
-          className={`absolute top-1/3 right-1/4 w-4 h-4 bg-red-400 rounded-full transition-all duration-1000 delay-700 ${isVisible ? "animate-pulse translate-y-0" : "-translate-y-10 opacity-0"}`}
-        ></div>
-        <div
-          className={`absolute bottom-1/4 right-1/3 w-6 h-6 bg-lime-400 rounded-full transition-all duration-1000 delay-900 ${isVisible ? "animate-bounce translate-x-0" : "-translate-x-20 opacity-0"}`}
-        ></div>
+        <motion.div
+          className="absolute top-1/3 right-1/4 w-4 h-4 bg-red-400 rounded-full"
+          initial={{ y: -40, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.7 }}
+          whileInView={{ scale: 1.2, transition: { repeat: Infinity, repeatType: "reverse", duration: 1.5 } }} // A pulse animation
+        />
+        <motion.div
+          className="absolute bottom-1/4 right-1/3 w-6 h-6 bg-lime-400 rounded-full"
+          initial={{ x: -80, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.9 }}
+          whileInView={{ y: [0, -10, 0], transition: { repeat: Infinity, duration: 1.5, ease: "easeInOut" } }} // A bounce animation
+        />
       </div>
 
       {/* Navigation */}
-      <nav
-        className={`absolute top-8 left-0 right-0 flex justify-between items-center px-6 md:px-12 z-10 transition-all duration-1000 ${isVisible ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"}`}
+      <motion.nav
+        className="absolute top-8 left-0 right-0 flex justify-between items-center px-6 md:px-12 z-10"
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 1 }}
       >
         <Button
           variant="outline"
@@ -37,44 +44,56 @@ export const  HeroSection = ()=> {
         >
           CONTACT US
         </Button>
-      </nav>
+      </motion.nav>
 
       {/* Main Content */}
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         {/* Logo */}
-        <div
-          className={`mb-8 transition-all duration-1000 delay-200 ${isVisible ? "scale-100 opacity-100" : "scale-50 opacity-0"}`}
+        <motion.div
+          className="mb-8"
+          initial={{ scale: 0.5, opacity: 0 }}
+          whileInView={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.2 }}
         >
           <TopicHeroLogo />
-        </div>
+        </motion.div>
 
         {/* Tagline */}
-        <div
-          className={`mb-6 transition-all duration-1000 delay-400 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"}`}
+        <motion.div
+          className="mb-6"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.4 }}
         >
           <span className="inline-flex items-center gap-2 text-sm md:text-base text-gray-300 bg-gray-800/50 px-4 py-2 rounded-full border border-gray-700">
             <span className="text-yellow-400">⚡</span>
             Introducing AI Automation
           </span>
-        </div>
+        </motion.div>
 
         {/* Main Headline */}
-        <h1
-          className={`text-4xl md:text-6xl lg:text-7xl font-bold mb-6 transition-all duration-1000 delay-600 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
+        <motion.h1
+          className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.6 }}
         >
           <span className="text-lime-400">SWIPE.</span> <span className="text-red-400">DEBATE.</span>{" "}
           <span className="text-emerald-400">DISCOVER.</span>
           <br />
           <span className="text-white text-3xl md:text-5xl lg:text-6xl">AI-POWERED TOPIC BATTLES.</span>
-        </h1>
+        </motion.h1>
 
         {/* Description */}
-        <p
-          className={`text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed transition-all duration-1000 delay-800 ${isVisible ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
+        <motion.p
+          className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed"
+          initial={{ y: 40, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1, delay: 0.8 }}
         >
           Pick your topics, spin into argument duels, and uncover fresh perspectives—AI delivers statements that spark
           real, smart discussions
-        </p>
+        </motion.p>
       </div>
     </section>
   )
