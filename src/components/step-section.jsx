@@ -6,15 +6,15 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
   const getStepImage = (step) => {
     switch (step) {
       case "1":
-        return "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%2035020-ciX3UHb4SqZXd4jGhpEdTcyNWbhEYu.png"
+        return "Frame 35020.png"
       case "2":
-        return "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%2035025-aM8hiRZWXhzTGt0jstfbGt9iL5zw70.png"
+        return "Frame 35025.png"
       case "3":
-        return "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%2035026-FDA4w7NJDasIfaygDRMQ4JfejrJYF7.png"
+        return "Frame 35026.png"
       case "4":
-        return "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%2035027-e1zMg2cKbHqHA1s8whJj8bfQR0aTkh.png"
+        return "Frame 35027.png"
       default:
-        return "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Frame%2035020-ciX3UHb4SqZXd4jGhpEdTcyNWbhEYu.png"
+        return "Frame 35020.png"
     }
   }
 
@@ -46,7 +46,7 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
 
   return (
     <motion.section
-      className="py-20 px-4 relative overflow-hidden min-h-screen bg-black"
+      className="py-20 px-4 relative overflow-hidden  bg-black"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
