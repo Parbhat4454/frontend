@@ -55,7 +55,7 @@ export function SatelliteCommunicationSection() {
   <div className="relative w-full max-w-4xl rounded-2xl shadow-2xl overflow-hidden">
     <motion.video
       className="w-full h-full"
-      src="Topic Hero-Final.mp4"
+      src="Topic Hero-Final_compressed.mp4"
       initial={{ scale: 0.8, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 1, ease: "easeInOut" }}
