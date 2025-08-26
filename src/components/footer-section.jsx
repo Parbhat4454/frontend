@@ -80,8 +80,8 @@ export function FooterSection() {
                 <path d="M5.85938 30.7937C6.02353 30.9414 6.18802 31.0565 6.36862 31.1713C6.76273 31.3848 7.17362 31.5 7.58417 31.5C8.02762 31.5 8.45463 31.3688 8.84908 31.1388L17.4395 26.1236L23.9439 22.3786L23.9362 22.3709L19.082 17.5164L5.85938 30.7937Z" fill="#F63448" />
                 <defs>
                   <linearGradient id="paint0_linear_325_513" x1="-0.789283" y1="24.1451" x2="12.5083" y2="10.8472" gradientUnits="userSpaceOnUse">
-                    <stop stop-color="#00E2FF" />
-                    <stop offset="1" stop-color="#00C5FF" />
+                    <stop stopColor="#00E2FF" />
+                    <stop offset="1" stopColor="#00C5FF" />
                   </linearGradient>
                 </defs>
               </svg>
