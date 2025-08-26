@@ -206,13 +206,104 @@ export function BackgroundElements() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+
+
+
+  const [finalStyleStars, setFinalStyleStars] = useState({
+    transform: 'scale(1) translateY(0px) translateX(0px)',
+  });
+
+useEffect(() => {
+    // Stage 0: scale(1) translateY(0px) translateX(0px)
+    // Stage 1: scale(1.2) translateY(200px) translateX(120px)
+    // Stage 2: scale(1.09) translateY(110px) translateX(-60px)
+    // Stage 3: scale(1.4) translateY(20px) translateX(0px) rotate(15deg)
+    // Stage 4: scale(1.4) translateY(220px) translateX(180px) rotate(0deg)
+    // Stage 5: scale(1) translateY(0px) translateX(0px)
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      // Define the end of each stage
+      const stage1End = viewportHeight;
+      const stage2End = viewportHeight * 2;
+      const stage3End = viewportHeight * 3;
+      const stage4End = viewportHeight * 4;
+      const stage5End = viewportHeight * 5;
+
+      let newTransform; 
+
+      // --- STAGE 0 to STAGE 1 (0vh to 100vh) ---
+      if (scrollY <= stage1End) {
+        const progress = Math.min(1, scrollY / stage1End);
+        const scaleValue = 1 + (1.2 - 1) * progress;
+        const translateY = 0 + (200 - 0) * progress;
+        const translateX = 0 + (120 - 0) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      }
+
+      // --- STAGE 1 to STAGE 2 (100vh to 200vh) ---
+      else if (scrollY > stage1End && scrollY <= stage2End) {
+        const progress = Math.min(1, (scrollY - stage1End) / (stage2End - stage1End));
+        const scaleValue = 1.2 + (1.09 - 1.2) * progress;
+        const translateY = 200 + (110 - 200) * progress;
+        const translateX = 120 + (-60 - 120) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      }
+
+      // --- STAGE 2 to STAGE 3 (200vh to 300vh) ---
+      else if (scrollY > stage2End && scrollY <= stage3End) {
+        const progress = Math.min(1, (scrollY - stage2End) / (stage3End - stage2End));
+        const scaleValue = 1.09 + (1.4 - 1.09) * progress;
+        const translateY = 110 + (20 - 110) * progress;
+        const translateX = -60 + (0 - (-60)) * progress;
+        const rotateValue = 0 + (15 - 0) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px) `;
+      }
+
+      // --- STAGE 3 to STAGE 4 (300vh to 400vh) ---
+      else if (scrollY > stage3End && scrollY <= stage4End) {
+        const progress = Math.min(1, (scrollY - stage3End) / (stage4End - stage3End));
+        const scaleValue = 1.4 + (1.4 - 1.4) * progress; // scale remains constant
+        const translateY = 20 + (220 - 20) * progress;
+        const translateX = 0 + (180 - 0) * progress;
+        const rotateValue = 15 + (0 - 15) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px) `;
+      }
+
+      // --- STAGE 4 to STAGE 5 (400vh to 500vh) ---
+      else if (scrollY > stage4End && scrollY <= stage5End) {
+        const progress = Math.min(1, (scrollY - stage4End) / (stage5End - stage4End));
+        const scaleValue = 1.4 + (1 - 1.4) * progress;
+        const translateY = 220 + (0 - 220) * progress;
+        const translateX = 180 + (0 - 180) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      }
+
+      // --- After all stages: Lock into final state ---
+      else {
+        newTransform = 'scale(1) translateY(0px) translateX(0px)';
+      }
+
+      setFinalStyleStars({ transform: newTransform });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+
+
+
+
+
+
+
   return (
     <div className="">
-      <div style={finalStyleSheet}
-        className="fixed  top-20 left-0 w-full h-screen bg-center bg-cover bg-no-repeat bg-[url('/transparent.png')] -z-10"></div>
-      {/* <div style={finalStyleSphere} className="fixed top-0 left-0 w-full h-screen bg-center bg-cover bg-no-repeat bg-[url('/Abstract_Shiny_Background.png')] -z-10"></div> */}
-      <div style={finalStyleSphere} className="fixed top-0 left-0 w-[400px] h-[400px]  bg-cover  bg-[url('/sphere.png')] -z-10"></div>
-
+      <div style={finalStyleSheet} className="fixed  top-20 left-0 w-full h-screen bg-center bg-cover bg-no-repeat bg-[url('/transparent.png')] -z-10"></div>
+      <div style={finalStyleSphere} className="fixed top-0 left-0 w-[400px] h-[400px]  bg-cover  bg-[url('/sphere.png')] -z-9"></div>
+      <div style={finalStyleStars} className="fixed top-0 left-0  w-full h-screen bg-cover  bg-[url('/Abstract_Shiny_Background.png')] -z-10"></div>
     </div>
   )
 }
