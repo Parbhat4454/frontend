@@ -1,4 +1,5 @@
-
+'use client'
+import { motion } from "framer-motion";
 
 export function StepSection({ stepNumber, title, description, titleColor, reverse = false }) {
   const getStepImage = (step) => {
@@ -42,10 +43,12 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
     <div
       className=" mb-15 relative overflow-hidden"
     >
-      <div  className="bg-transparent max-w-2xl md:max-w-6xl mx-auto relative z-10">
-        <div  className={` lg:grid lg:grid-cols-2   ${reverse ? "lg:grid-flow-col-dense" : ""}`}>
-          <div
-            
+      <div className="bg-transparent max-w-2xl md:max-w-6xl mx-auto relative z-10">
+        <div className={` lg:grid lg:grid-cols-2   ${reverse ? "lg:grid-flow-col-dense" : ""}`}>
+          <motion.div
+            initial={{ y: 500, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className={`flex justify-center items-center ${reverse ? "lg:col-start-2" : ""}`}
           >
             <img
@@ -53,32 +56,40 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
               alt={`Step ${stepNumber}: ${title}`}
               className="md:block lg:inline scale-60 lg:scale-100 p-3 lg:p-0"
             />
-          </div>
+          </motion.div>
 
 
           <div
             className={`p-2 lg:p-0 lg:mt-[124px] ${reverse ? "lg:col-start-1" : ""}`}
             variants={textVariants}
           >
-            <div  className=" lg:text-left">
-              <div
+            <div className=" lg:text-left">
+              <motion.div
+                initial={{ y: -60, x: 60, opacity: 0 }}
+                whileInView={{ y: 0, x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 className="font-normal text-sm leading-3 tracking-normal text-center"
                 variants={stepVariants}
               >
                 STEP {stepNumber} :
-              </div>
+
+              </motion.div>
               <div
                 className={`mt-2 font-medium text-[31px] leading-[46px] tracking-[1px] custom-word-spacing text-center normal-case small-caps ${titleColor} `}
                 variants={titleVariants}
               >
                 {title}
               </div>
-              <div
+              <motion.div
+
+                initial={{  x: -120, opacity: 0 }}
+                whileInView={{  x: 0, opacity: 1 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
                 className="mx-auto  lg:w-[490px] mt-4 font-normal text-base leading-6 tracking-normal text-center"
                 variants={descriptionVariants}
               >
                 {description}
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>

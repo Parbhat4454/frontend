@@ -1,4 +1,5 @@
-
+'use client'
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button"
 
 export function FooterSection() {
@@ -24,21 +25,18 @@ export function FooterSection() {
   };
 
   return (
-    <div
+    <motion.div
       className=" mt-56 px-4 relative h-[85vh]"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.2 }} // Animate once when 20% of the element is visible
+      initial={{ y:300, opacity: 0 }}
+      whileInView={{ y:0, opacity: 1 }}
+      transition={{ duration: 1, ease: "easeOut" }}
     >
       {/* Background Elements */}
       <div
         className="absolute inset-0 overflow-hidden"
         variants={backgroundVariants}
       >
-        <div className="absolute bottom-0 left-0 w-full h-64">
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-gray-800/30 to-transparent rounded-full transform -translate-x-1/2 translate-y-1/2"></div>
-          <div className="absolute bottom-0 right-0 w-full h-32 bg-gradient-to-l from-gray-700/20 to-transparent transform skew-y-3"></div>
-        </div>
+        
       </div>
 
       <div
@@ -113,6 +111,6 @@ export function FooterSection() {
           Copyright © 2023 Topic Hero - All Rights Reserved.
         </p>
       </div>
-    </div >
+    </motion.div >
   );
 }

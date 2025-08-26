@@ -1,22 +1,28 @@
 
 
+'use client'
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button"
 import '../app/globals.css'
 
-const  HeroSection = () => {
+const HeroSection = () => {
   return (
     <div >
       <div
-        className="mx-2 md:mx-0 relative flex  text-center  justify-between md:pt-[19px] md:pl-[80px] mt-10 "
+        className=" mx-2 md:mx-0 relative flex  text-center  justify-between md:pt-[19px] md:pl-[80px] mt-10 "
       >
-
-        <Button
-          variant="outline"
-          className="w-[139px] h-[48px] px-6 py-2 border-gray-200 text-white hover:bg-[#6e777133] rounded-full pr-[44px] pl-[44px] bg-transparent font-small leading-[48px] tracking-normal text-center normal-case small-caps"
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          HOME
-        </Button>
-
+          <Button
+            variant="outline"
+            className="w-[139px] h-[48px] px-6 py-2 border-gray-600 text-white hover:bg-[#6e777133] rounded-full pr-[44px] pl-[44px] bg-transparent font-small leading-[48px] tracking-normal text-center normal-case small-caps"
+          >
+            HOME
+          </Button>
+        </motion.div>
 
 
         <img
@@ -25,15 +31,20 @@ const  HeroSection = () => {
           className="hidden md:block absolute top-[72px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-[166px] h-[160px]"
         />
 
-        <Button
-
-          variant="outline"
-
-          className=" w-[192px] md:mr-[81px] py-2    h-[48px]    border-gray-600 text-white hover:bg-[#6e777133] rounded-full px-6 bg-transparent    font-small leading-[48px] tracking-wider text-center normal-case small-caps"
+        <motion.div
+          initial={{ x: -300, y: 300, opacity: 0 }}
+          whileInView={{ x: 0, y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          CONTACT US
-        </Button>
+          <Button
 
+            variant="outline"
+
+            className=" w-[192px] md:mr-[81px] py-2    h-[48px]    border-gray-600 text-white hover:bg-[#6e777133] rounded-full px-6 bg-transparent    font-small leading-[48px] tracking-wider text-center normal-case small-caps"
+          >
+            CONTACT US
+          </Button>
+        </motion.div>
 
       </div>
 
@@ -52,9 +63,6 @@ const  HeroSection = () => {
         {/* Logo */}
         <div
           className="mb-8"
-          initial={{ scale: 0.5, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 1, delay: 0.2 }}
         >
 
         </div>
@@ -73,22 +81,28 @@ const  HeroSection = () => {
         </div>
 
         {/* Main Headline */}
-        <div
+        <motion.div
+          initial={{ x: -100, y: -100, opacity: 0 }}
+          whileInView={{ x: 0, y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="tracking-wide text-3xl md:text-4xl lg:text-2xl font-bold mb-3"
         >
           <span className="text-[#a6cf08] font-bold text-[34px] leading-[46px] tracking-widest text-center normal-case small-caps">SWIPE.</span> <span className="text-[#FF5654]  font-bold text-[34px] leading-[46px] tracking-widest text-center normal-case small-">DEBATE.</span>{" "}
           <span className="text-[#47CA8C]  font-bold text-[34px] leading-[46px] tracking-widest text-center normal-case small-">DISCOVER.</span>
           <br />
           <span className="text-white  font-bold text-[34px] leading-[46px] tracking-[3px] text-center normal-case small-">AI-POWERED TOPIC BATTLES.</span>
-        </div>
+        </motion.div>
 
         {/* Description */}
-        <div
+        <motion.div
+          initial={{ x: 200, opacity: 0 }}
+          whileInView={{ x: 0, y: 0, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className=" mt-[4px] text-[13px] tracking-[2px] md:text-[15px] text-gray-300 max-w-3xl mx-auto custom-word-spacing"
         >
           Pick your topics, spin into argument duels, and uncover fresh perspectives—AI delivers statements that spark
           real, smart discussions
-        </div>
+        </motion.div>
       </div>
     </div>
   )

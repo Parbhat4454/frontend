@@ -28,3 +28,8 @@ body {
 .custom-word-spacing {
   word-spacing: 2px; /* You can change this value to whatever you need */
 }
+
+html, body {
+  overflow-x: clip;
+}
+

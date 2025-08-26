@@ -22,12 +22,13 @@ export default function HomePage() {
       <BackgroundElements />
       {/* <Header /> */}
       <HeroSection />
-      <HowItWorksSection />
+      <HowItWorksSection  />
       <StepSection
         stepNumber="1"
         title="SWIPE YOUR TOPIC"
         description="Topic Hero is an AI-powered mobile app where you swipe on topics and argue with rivals! AI gives you statements to agree/disagree on, and you get partnered in a world-limited discussion, in a new, innovative and informative way to argue with strangers."
         titleColor="text-lime-400"
+        className='overflow-x-hidden'
       />
       <StepSection
         stepNumber="2"
@@ -36,12 +37,12 @@ export default function HomePage() {
         titleColor="text-red-400"
         reverse
       />
-      <StepSection
+       <StepSection
         stepNumber="3"
         title="BATTLE & LEARN"
         description="What's a product or service you'd like to show? Swipe on topics and argue with rivals! Argue with strangers in our mobile app where you can track your progress and see how you stack up against other debaters."
         titleColor="text-emerald-400"
-      />
+      />  
       <StepSection
         stepNumber="4"
         title="STAY IN THE GAME"

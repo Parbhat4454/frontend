@@ -1,6 +1,10 @@
 
+'use client'
+import { motion } from "framer-motion";
+
+
 export function HowItWorksSection() {
- 
+
 
   const logoVariants = {
     hidden: { scale: 0.8, opacity: 0 },
@@ -12,7 +16,7 @@ export function HowItWorksSection() {
     visible: { y: 0, opacity: 1, transition: { duration: 0.7 } },
   };
 
-  
+
 
   return (
     <div
@@ -20,22 +24,27 @@ export function HowItWorksSection() {
     >
 
 
-      <div  className="bg-transparent max-w-7xl mx-auto  ">
+      <div className="bg-transparent max-w-7xl mx-auto  ">
         {/* Header */}
         <div className="text-center">
-          <div  className="flex justify-center" variants={logoVariants}>
+          <motion.div initial={{ y: 500, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }} className="flex justify-center" variants={logoVariants}>
             <img
               src="Logo PNG.png"
               alt="Topic Hero Logo"
               className=" w-[100px] h-[100px]  opacity-100"
             />
-          </div>
-          <div
+          </motion.div>
+          <motion.div
+            initial={{  opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="mt-6 font-semibold text-[34px] leading-[46px] tracking-[3px] text-center normal-case small-caps"
             variants={titleVariants}
           >
             HOW IT WORKS
-          </div>
+          </motion.div>
         </div>
 
       </div>
