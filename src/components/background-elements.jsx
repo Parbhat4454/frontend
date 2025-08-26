@@ -213,7 +213,7 @@ export function BackgroundElements() {
     transform: 'scale(1) translateY(0px) translateX(0px)',
   });
 
-useEffect(() => {
+  useEffect(() => {
     // Stage 0: scale(1) translateY(0px) translateX(0px)
     // Stage 1: scale(1.2) translateY(200px) translateX(120px)
     // Stage 2: scale(1.09) translateY(110px) translateX(-60px)
@@ -231,7 +231,7 @@ useEffect(() => {
       const stage4End = viewportHeight * 4;
       const stage5End = viewportHeight * 5;
 
-      let newTransform; 
+      let newTransform;
 
       // --- STAGE 0 to STAGE 1 (0vh to 100vh) ---
       if (scrollY <= stage1End) {
@@ -295,6 +295,89 @@ useEffect(() => {
 
 
 
+  const [finalStyleLight, setFinalStyleLight] = useState({
+    transform: 'scale(2) translateY(70px) translateX(690px)',
+  });
+
+  useEffect(() => {
+    // Stage 0: scale(2) translateY(70px) translateX(690px)
+    // Stage 1: scale(2) translateY(320px) translateX(-20px)
+    // Stage 2: scale(2) translateY(230px) translateX(400px)
+    // Stage 3: scale(2) translateY(70px) translateX(690px)
+    // Stage 4: scale(2) translateY(320px) translateX(-20px)
+    // Stage 5: scale(2) translateY(70px) translateX(590px)
+
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      // Define the end of each stage
+      const stage1End = viewportHeight;
+      const stage2End = viewportHeight * 2;
+      const stage3End = viewportHeight * 3;
+      const stage4End = viewportHeight * 4;
+      const stage5End = viewportHeight * 5;
+
+      let newTransform;
+
+      // --- STAGE 0 to STAGE 1 (0vh to 100vh) ---
+      if (scrollY <= stage1End) {
+        const progress = Math.min(1, scrollY / stage1End);
+        const scaleValue = 2; // Scale remains constant
+        const translateY = 70 + (320 - 70) * progress;
+        const translateX = 690 + (-20 - 690) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      }
+
+      // --- STAGE 1 to STAGE 2 (100vh to 200vh) ---
+      else if (scrollY > stage1End && scrollY <= stage2End) {
+        const progress = Math.min(1, (scrollY - stage1End) / (stage2End - stage1End));
+        const scaleValue = 2; // Scale remains constant
+        const translateY = 320 + (230 - 320) * progress;
+        const translateX = -20 + (400 - (-20)) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      }
+
+      // --- STAGE 2 to STAGE 3 (200vh to 300vh) ---
+      else if (scrollY > stage2End && scrollY <= stage3End) {
+        const progress = Math.min(1, (scrollY - stage2End) / (stage3End - stage2End));
+        const scaleValue = 2; // Scale remains constant
+        const translateY = 230 + (270 - 230) * progress;
+        const translateX = 400 + (690 - 400) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      }
+
+      // --- STAGE 3 to STAGE 4 (300vh to 400vh) ---
+      else if (scrollY > stage3End && scrollY <= stage4End) {
+        const progress = Math.min(1, (scrollY - stage3End) / (stage4End - stage3End));
+        const scaleValue = 2; // Scale remains constant
+        const translateY = 270 + (320 - 270) * progress;
+        const translateX = 690 + (-20 - 690) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      }
+
+      // --- STAGE 4 to STAGE 5 (400vh to 500vh) ---
+      else if (scrollY > stage4End && scrollY <= stage5End) {
+        const progress = Math.min(1, (scrollY - stage4End) / (stage5End - stage4End));
+        const scaleValue = 2; // Scale remains constant
+        const translateY = 320 + (70 - 320) * progress;
+        const translateX = -20 + (590 - (-20)) * progress;
+        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      }
+
+      // --- After all stages: Lock into final state ---
+      else {
+        // The final state of the animation
+        newTransform = 'scale(2) translateY(70px) translateX(590px)';
+      }
+
+      setFinalStyleLight({ transform: newTransform });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
 
 
 
@@ -304,6 +387,22 @@ useEffect(() => {
       <div style={finalStyleSheet} className="fixed  top-20 left-0 w-full h-screen bg-center bg-cover bg-no-repeat bg-[url('/transparent.png')] -z-10"></div>
       <div style={finalStyleSphere} className="fixed top-0 left-0 w-[400px] h-[400px]  bg-cover  bg-[url('/sphere.png')] -z-9"></div>
       <div style={finalStyleStars} className="fixed top-0 left-0  w-full h-screen bg-cover  bg-[url('/Abstract_Shiny_Background.png')] -z-10"></div>
+
+      <div
+        style={finalStyleLight}
+        className="
+          -z-10 
+          fixed
+            w-20 h-20 rounded-full  
+            bg-[#92c54e] 
+            shadow-[
+              0px_0px_100px_40px_rgba(255,255,0,0.2), /* Yellow glow with heavy blur and spread */
+              0px_0px_150px_80px_rgba(0,0,0,0.8),    /* Darker layer, very large spread */
+              0px_0px_200px_120px_rgba(255,255,255,0.2) /* Faint outer glow, largest spread */
+            ]
+          "
+      >
+      </div>
     </div>
   )
 }
