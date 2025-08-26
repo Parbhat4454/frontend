@@ -1,5 +1,4 @@
 import { Header } from "@/components/header"
-import { HeroSection } from "@/components/hero-section"
 import { BackgroundElements } from "@/components/background-elements"
 import { HowItWorksSection } from "@/components/how-it-works-section"
 import { StepTwoSection } from "@/components/step-two-section"
@@ -12,14 +11,15 @@ import { StepSection } from "@/components/step-section"
 
 
 import { forwardRef } from 'react';
+import HeroSection from "@/components/hero-section"
 
 
 
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-black text-white relative overflow-hidden">
-      {/* <BackgroundElements /> */}
+    <div className="">
+      <BackgroundElements />
       {/* <Header /> */}
       <HeroSection />
       <HowItWorksSection />

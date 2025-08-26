@@ -24,3 +24,7 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.custom-word-spacing {
+  word-spacing: 2px; /* You can change this value to whatever you need */
+}
