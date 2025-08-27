@@ -9,7 +9,7 @@ const HeroSection = () => {
   return (
     <div >
       <div
-        className=" mx-2 md:mx-0 relative flex  text-center  justify-between md:pt-[19px] md:pl-[80px] mt-10 "
+        className=" mx-2 md:mx-0 relative flex  text-center  justify-between md:pt-[19px] md:pl-[80px] pt-10 "
       >
         <motion.div
           initial={{ opacity: 0 }}
@@ -98,7 +98,7 @@ const HeroSection = () => {
           initial={{ x: 200, opacity: 0 }}
           whileInView={{ x: 0, y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className=" mt-[4px] text-[13px] tracking-[2px] md:text-[15px] text-gray-300 max-w-3xl mx-auto custom-word-spacing"
+          className="font-montserrat mt-[4px] text-[19px] tracking-[2px] md:text-[15px] text-gray-300 max-w-3xl mx-auto font-thin custom-word-spacing"
         >
           Pick your topics, spin into argument duels, and uncover fresh perspectives—AI delivers statements that spark
           real, smart discussions

@@ -99,7 +99,7 @@ export function FooterSection() {
         <div  className="mb-8 " variants={itemVariants}>
           <Button
             variant="outline"
-            className="w-[225px] h-[48px]  opacity-100 rounded-[50px] px-[44px] gap-[10px] font-poppins font-semibold text-[16px] leading-[48px] tracking-normal text-center normal-case small-caps border-gray-600 text-white hover:bg-[#6e777133]"
+            className="w-[225px] h-[48px]  opacity-100 rounded-[50px] bg-transparent px-[44px] gap-[10px] font-poppins font-semibold text-[16px] leading-[48px] tracking-normal text-center normal-case small-caps border-gray-600 text-white hover:bg-[#6e777133]"
           >
             <p className="">PRIVACY POLICY</p>
 
