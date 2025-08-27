@@ -300,84 +300,84 @@ export function BackgroundElements() {
     transform: 'scale(2) translateY(70px) translateX(690px)',
   });
 
-  useEffect(() => {
-    // Stage 0: scale(2) translateY(70px) translateX(690px)
-    // Stage 1: scale(2) translateY(320px) translateX(-20px)
-    // Stage 2: scale(2) translateY(230px) translateX(400px)
-    // Stage 3: scale(2) translateY(70px) translateX(690px)
-    // Stage 4: scale(2) translateY(320px) translateX(-20px)
-    // Stage 5: scale(2) translateY(70px) translateX(590px)
+  const [div1Opacity, setDiv1Opacity] = useState(1);
+  const [div2Opacity, setDiv2Opacity] = useState(0);
+  const [div3Opacity, setDiv3Opacity] = useState(0);
 
+  useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
+      const scrollProgress = scrollY / (viewportHeight * 5); // Total scroll range is 5x viewport height
 
-      // Define the end of each stage
-      const stage1End = viewportHeight;
-      const stage2End = viewportHeight * 2;
-      const stage3End = viewportHeight * 3;
-      const stage4End = viewportHeight * 4;
-      const stage5End = viewportHeight * 5;
-
+      // Calculate the transform for a single element
       let newTransform;
+      let translateY, translateX;
 
-      // --- STAGE 0 to STAGE 1 (0vh to 100vh) ---
-      if (scrollY <= stage1End) {
-        const progress = Math.min(1, scrollY / stage1End);
-        const scaleValue = 2; // Scale remains constant
-        const translateY = 70 + (320 - 70) * progress;
-        const translateX = 690 + (-20 - 690) * progress;
-        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
+      // Define keyframes for the animation
+      const stages = [
+        { y: 70, x: 690 },    // Stage 0
+        { y: 320, x: -20 },   // Stage 1
+        { y: 230, x: 400 },   // Stage 2
+        { y: 270, x: 690 },   // Stage 3
+        { y: 320, x: -20 },   // Stage 4
+        { y: 70, x: 590 }     // Stage 5
+      ];
+
+      // Determine which stage the animation is in and calculate the interpolated values
+      if (scrollY <= viewportHeight) { // Stage 0 to 1
+        const progress = scrollY / viewportHeight;
+        translateY = stages[0].y + (stages[1].y - stages[0].y) * progress;
+        translateX = stages[0].x + (stages[1].x - stages[0].x) * progress;
+        setDiv1Opacity(1);
+        setDiv2Opacity(0);
+        setDiv3Opacity(0);
+      } else if (scrollY <= viewportHeight * 2) { // Stage 1 to 2
+        const progress = (scrollY - viewportHeight) / viewportHeight;
+        translateY = stages[1].y + (stages[2].y - stages[1].y) * progress;
+        translateX = stages[1].x + (stages[2].x - stages[1].x) * progress;
+        // Fade out div1 and fade in div2
+        setDiv1Opacity(1 - progress);
+        setDiv2Opacity(progress);
+        setDiv3Opacity(0);
+      } else if (scrollY <= viewportHeight * 3) { // Stage 2 to 3
+        const progress = (scrollY - viewportHeight * 2) / viewportHeight;
+        translateY = stages[2].y + (stages[3].y - stages[2].y) * progress;
+        translateX = stages[2].x + (stages[3].x - stages[2].x) * progress;
+        setDiv1Opacity(0);
+        setDiv2Opacity(1);
+        setDiv3Opacity(0);
+      } else if (scrollY <= viewportHeight * 4) { // Stage 3 to 4
+        const progress = (scrollY - viewportHeight * 3) / viewportHeight;
+        translateY = stages[3].y + (stages[4].y - stages[3].y) * progress;
+        translateX = stages[3].x + (stages[4].x - stages[3].x) * progress;
+        // Fade out div2 and fade in div3
+        setDiv1Opacity(0);
+        setDiv2Opacity(1 - progress);
+        setDiv3Opacity(progress);
+      } else if (scrollY <= viewportHeight * 5) { // Stage 4 to 5
+        const progress = (scrollY - viewportHeight * 4) / viewportHeight;
+        translateY = stages[4].y + (stages[5].y - stages[4].y) * progress;
+        translateX = stages[4].x + (stages[5].x - stages[4].x) * progress;
+        setDiv1Opacity(0);
+        setDiv2Opacity(0);
+        setDiv3Opacity(1);
+      } else { // Beyond all stages
+        translateY = stages[5].y;
+        translateX = stages[5].x;
+        setDiv1Opacity(0);
+        setDiv2Opacity(0);
+        setDiv3Opacity(1);
       }
 
-      // --- STAGE 1 to STAGE 2 (100vh to 200vh) ---
-      else if (scrollY > stage1End && scrollY <= stage2End) {
-        const progress = Math.min(1, (scrollY - stage1End) / (stage2End - stage1End));
-        const scaleValue = 2; // Scale remains constant
-        const translateY = 320 + (230 - 320) * progress;
-        const translateX = -20 + (400 - (-20)) * progress;
-        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
-      }
-
-      // --- STAGE 2 to STAGE 3 (200vh to 300vh) ---
-      else if (scrollY > stage2End && scrollY <= stage3End) {
-        const progress = Math.min(1, (scrollY - stage2End) / (stage3End - stage2End));
-        const scaleValue = 2; // Scale remains constant
-        const translateY = 230 + (270 - 230) * progress;
-        const translateX = 400 + (690 - 400) * progress;
-        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
-      }
-
-      // --- STAGE 3 to STAGE 4 (300vh to 400vh) ---
-      else if (scrollY > stage3End && scrollY <= stage4End) {
-        const progress = Math.min(1, (scrollY - stage3End) / (stage4End - stage3End));
-        const scaleValue = 2; // Scale remains constant
-        const translateY = 270 + (320 - 270) * progress;
-        const translateX = 690 + (-20 - 690) * progress;
-        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
-      }
-
-      // --- STAGE 4 to STAGE 5 (400vh to 500vh) ---
-      else if (scrollY > stage4End && scrollY <= stage5End) {
-        const progress = Math.min(1, (scrollY - stage4End) / (stage5End - stage4End));
-        const scaleValue = 2; // Scale remains constant
-        const translateY = 320 + (70 - 320) * progress;
-        const translateX = -20 + (590 - (-20)) * progress;
-        newTransform = `scale(${scaleValue}) translateY(${translateY}px) translateX(${translateX}px)`;
-      }
-
-      // --- After all stages: Lock into final state ---
-      else {
-        // The final state of the animation
-        newTransform = 'scale(2) translateY(70px) translateX(590px)';
-      }
-
+      newTransform = `scale(2) translateY(${translateY}px) translateX(${translateX}px)`;
       setFinalStyleLight({ transform: newTransform });
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
 
 
@@ -390,20 +390,25 @@ export function BackgroundElements() {
       <div style={finalStyleStars} className="fixed top-0 left-0  w-full h-screen bg-cover  bg-[url('/Abstract_Shiny_Background.png')] -z-10"></div>
 
       <div
-        style={finalStyleLight}
-        className="
-          -z-10 
-          fixed
-            w-20 h-20 rounded-full  
-            bg-[#92c54e] 
-            shadow-[
-              0px_0px_100px_40px_rgba(255,255,0,0.2), /* Yellow glow with heavy blur and spread */
-              0px_0px_150px_80px_rgba(0,0,0,0.8),    /* Darker layer, very large spread */
-              0px_0px_200px_120px_rgba(255,255,255,0.2) /* Faint outer glow, largest spread */
-            ]
-          "
+        style={{ ...finalStyleLight, opacity: div1Opacity, transition: 'opacity 0.8s ease-in-out' }}
+        className="-z-10 fixed w-40 h-40 rounded-full"
       >
+        <img src="/Frame 35025.svg" alt=""></img>
       </div>
+      <div
+        style={{ ...finalStyleLight, opacity: div2Opacity, transition: 'opacity 0.8s ease-in-out' }}
+        className="-z-10 fixed w-40 h-40 rounded-full"
+      >
+        <img src="/Frame 35027.svg" alt=""></img>
+      </div>
+      <div
+        style={{ ...finalStyleLight, opacity: div3Opacity, transition: 'opacity 0.8s ease-in-out' }}
+        className="-z-10 fixed w-40 h-40 rounded-full"
+      >
+        <img src="/Frame 35028.svg" alt=""></img>
+      </div>
+
+
 
       <motion.div initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
