@@ -41,9 +41,9 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
 
   return (
     <div
-      className=" mb-15 relative overflow-hidden"
+      className=" mb-25 relative overflow-hidden mx-auto w-[90%]"
     >
-      <div className="bg-transparent max-w-2xl md:max-w-6xl mx-auto relative z-10">
+      <div className="bg-transparent max-w-2xl md:max-w-full mx-auto relative z-10">
         <div className={` lg:grid lg:grid-cols-2   ${reverse ? "lg:grid-flow-col-dense" : ""}`}>
           <motion.div
             initial={{ y: 500, opacity: 0 }}
@@ -85,7 +85,7 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
                 initial={{  x: -120, opacity: 0 }}
                 whileInView={{  x: 0, opacity: 1 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
-                className="mx-auto  lg:w-[490px] mt-4 font-normal text-base leading-6 tracking-normal text-center"
+                className=" mx-auto  lg:w-[490px] mt-4 font-normal text-base leading-6 tracking-normal text-center"
                 variants={descriptionVariants}
               >
                 {description}

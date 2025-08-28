@@ -14,7 +14,10 @@ export function SatelliteCommunicationSection() {
       transition={{ duration: 1, ease: "easeOut" }} className="relative w-full max-w-6xl  shadow-2xl overflow-hidden">
         <video
           className=" w-full h-full"
-          src="Topic Hero-Final_compressed.mp4"
+          autoPlay
+          controls
+          muted
+          src="/Topic Hero-Final_compressed.mp4"
         ></video>
       </motion.div>
     </section>
