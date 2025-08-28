@@ -20,11 +20,11 @@ export function HowItWorksSection() {
 
   return (
     <div
-      className="relative pt-70 lg:pt-110 px-4"
+      className="relative pt-70 lg:pt-0   px-4"
     >
 
 
-      <div className="mb-20  bg-transparent max-w-7xl mx-auto  ">
+      <div className="  bg-transparent max-w-7xl mx-auto  ">
         {/* Header */}
         <div className="text-center">
           <motion.div initial={{ y: 500, opacity: 0 }}

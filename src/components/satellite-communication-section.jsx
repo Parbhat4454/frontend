@@ -7,7 +7,7 @@ export function SatelliteCommunicationSection() {
   return (
     <section
       
-      className="relative pt-20 px-4 overflow-hidden flex justify-center items-center "
+      className="pt-20  lg:pt-0 relative  px-4 overflow-hidden flex justify-center items-center "
     >
       <motion.div initial={{  opacity: 0 }}
       whileInView={{  opacity: 1 }}

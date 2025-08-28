@@ -41,7 +41,7 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
 
   return (
     <div
-      className=" mb-25 relative overflow-hidden mx-auto w-[90%]"
+      className={`${stepNumber==1?'pt-14':'pt-20'} mb-25  lg:mb-0 pt-14 relative overflow-hidden mx-auto w-[90%]`}
     >
       <div className="bg-transparent max-w-2xl md:max-w-full mx-auto relative z-10">
         <div className={` lg:grid lg:grid-cols-2   ${reverse ? "lg:grid-flow-col-dense" : ""}`}>
@@ -75,7 +75,8 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
 
               </motion.div>
               <div
-                className={`mt-2 font-medium text-[31px] leading-[46px] tracking-[1px] custom-word-spacing text-center normal-case small-caps ${titleColor} `}
+                className={`mt-2 font-medium text-[91px] leading-[46px] tracking-[1px] custom-word-spacing text-center normal-case small-caps ${titleColor} `}
+                style={{fontSize:'xx-large', fontWeight:'700'}}
                 variants={titleVariants}
               >
                 {title}

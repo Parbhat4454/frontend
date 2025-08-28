@@ -26,7 +26,7 @@ export function FooterSection() {
 
   return (
     <motion.div
-      className=" mt-56 px-4 relative h-[85vh]"
+      className=" lg:pt-20 mt-56 px-4 relative h-[85vh] "
       initial={{ y:300, opacity: 0 }}
       whileInView={{ y:0, opacity: 1 }}
       transition={{ duration: 1, ease: "easeOut" }}
