@@ -1,7 +1,5 @@
 'use client'
 import { useEffect } from 'react';
-import $ from 'jquery';
-import 'jquery-scrollify';
 
 import { BackgroundElements } from "@/components/background-elements"
 import { HowItWorksSection } from "@/components/how-it-works-section"
@@ -9,11 +7,17 @@ import { SatelliteCommunicationSection } from "@/components/satellite-communicat
 import { FooterSection } from "@/components/footer-section"
 import { StepSection } from "@/components/step-section"
 import HeroSection from "@/components/hero-section"
+import dynamic from 'next/dynamic';
+
 
 export default function HomePage() {
   useEffect(() => {
-    if (typeof window !== 'undefined' && typeof $.scrollify !== 'undefined') {
-      // Only enable Scrollify on larger screens
+    (async () => {
+      if (typeof window !== 'undefined') {
+        const $ = (await import('jquery')).default;
+        await import('jquery-scrollify');
+
+         // Only enable Scrollify on larger screens
       if (window.innerWidth > 1024) {
         $.scrollify({
           section: ".scroll-section",
@@ -21,15 +25,14 @@ export default function HomePage() {
           interstitialSection: ".footer-section"
         });
       }
-    }
+      }
+    })();
 
     return () => {
-      if (typeof $.scrollify !== 'undefined') {
-        try {
-          $.scrollify.destroy(); // cleanup
-        } catch (e) {
-          console.warn("Scrollify cleanup error:", e);
-        }
+      if (typeof window !== 'undefined') {
+        import('jquery').then(({ default: $ }) => {
+          if ($.scrollify) $.scrollify.destroy();
+        });
       }
     };
   }, []);
