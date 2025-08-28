@@ -17,14 +17,14 @@ export default function HomePage() {
         const $ = (await import('jquery')).default;
         await import('jquery-scrollify');
 
-         // Only enable Scrollify on larger screens
-      if (window.innerWidth > 1024) {
-        $.scrollify({
-          section: ".scroll-section",
-          scrollSpeed: 1000,
-          interstitialSection: ".footer-section"
-        });
-      }
+        // Only enable Scrollify on larger screens
+        if (window.innerWidth > 1024) {
+          $.scrollify({
+            section: ".scroll-section",
+            scrollSpeed: 1000,
+            interstitialSection: ".footer-section"
+          });
+        }
       }
     })();
 
@@ -45,18 +45,22 @@ export default function HomePage() {
         <HeroSection />
       </div>
 
-      <div className="scroll-section lg:pt-8">
-        <HowItWorksSection />
-        <StepSection
-          stepNumber="1"
-          title="SWIPE YOUR TOPIC"
-          description="Topic Hero is an AI-powered mobile app where you swipe on topics and argue with rivals! AI gives you statements to agree/disagree on, and you get partnered in a world-limited discussion, in a new, innovative and informative way to argue with strangers."
-          titleColor="text-lime-400"
-          className="overflow-x-hidden"
-        />
+      <div className="scroll-section lg:pt-2">
+        <div className=''>
+          <HowItWorksSection />
+
+          <StepSection
+            stepNumber="1"
+            title="SWIPE YOUR TOPIC"
+            description="Topic Hero is an AI-powered mobile app where you swipe on topics and argue with rivals! AI gives you statements to agree/disagree on, and you get partnered in a world-limited discussion, in a new, innovative and informative way to argue with strangers."
+            titleColor="text-lime-400"
+            className="overflow-x-hidden"
+          />
+        </div>
       </div>
 
       <div className="scroll-section lg:pt-8">
+
         <StepSection
           stepNumber="2"
           title="AI DELIVERS THE THROWDOWN"
@@ -86,11 +90,11 @@ export default function HomePage() {
       </div>
 
       <div className="scroll-section lg:pt-8">
-          <SatelliteCommunicationSection />
+        <SatelliteCommunicationSection />
       </div>
 
       <div className="scroll-section ">
-          <FooterSection />
+        <FooterSection />
       </div>
     </div>
   )
