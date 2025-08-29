@@ -5,7 +5,7 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
   const getStepImage = (step) => {
     switch (step) {
       case "1":
-        return "Frame 35020.png"
+        return "1.png"
       case "2":
         return "Frame 35025.png"
       case "3":
@@ -46,15 +46,15 @@ export function StepSection({ stepNumber, title, description, titleColor, revers
       <div className="bg-transparent max-w-2xl md:max-w-full mx-auto relative z-10">
         <div className={` lg:grid lg:grid-cols-2   ${reverse ? "lg:grid-flow-col-dense" : ""}`}>
           <motion.div
-            initial={{ y: 500, opacity: 0 }}
+            initial={{ y: 500,opacity: 0 }}
             whileInView={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className={`flex justify-center items-center ${reverse ? "lg:col-start-2" : ""}`}
+            className={`flex justify-center items-center ${reverse ? "lg:col-start-2" : ""} `}
           >
             <img
               src={getStepImage(stepNumber) || "/placeholder.svg"}
               alt={`Step ${stepNumber}: ${title}`}
-              className="md:block lg:inline scale-60 lg:scale-100 p-3 lg:p-0"
+              className={`md:block lg:inline scale-60 lg:scale-100 p-3 lg:p-0    `}
             />
           </motion.div>
 
